@@ -18,7 +18,8 @@ local UPDATED = '6/15/2020'
 local CHANGELOG = {
 	' Update: 6/15/2020',
 	'',
-	'* Fixed RbxUtility and RockyV2'
+	'* Fixed RbxUtility and RockyV2',
+	'+ Added Rejoin command'
 }
 
 local CREDITS = [[
@@ -483,6 +484,12 @@ function LOAD_DATA()
 			NEW'ScrollingFrame'{Name = 'commands', BackgroundColor3 = C3(50, 50, 50), BackgroundTransparency = 0.5, BorderSizePixel = 0, Position = UDim2.new(0, 0, 1, -25), Size = UDim2.new(1, 0, 0, 0), Visible = false, CanvasSize = UDim2.new(0, 0, 0, 0), ScrollBarThickness = 6, ScrollingEnabled = true, BottomImage = SI, MidImage = SI, TopImage = SI, Parent = CMD_BAR_H.bar}
 			NEW'TextLabel'{Name = 'commands_ex', BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.new(0, 200, 0, 20), Visible = false, Font = 'SourceSansBold', TextColor3 = C3(255, 255, 255), TextSize = 18, TextXAlignment = 'Left', Parent = CMD_BAR_H.bar}
 			
+	local _CMD_Bar = CMD_BAR_H.bar
+	_CMD_Bar.Changed:connect(function()
+		if _CMD_Bar.Text == C_PREFIX then
+			_CMD_Bar.Text = ''
+		end
+	end)
 	local NOTIFY_H = Instance.new('ScreenGui', GUIS)
 	NOTIFY_H.Name = 'notify_seth'
 		local N = Instance.new('Frame', NOTIFY_H)
@@ -2737,14 +2744,6 @@ function(ARGS, SPEAKER)
 	end
 end)
 
-ADD_COMMAND('bang','bang [plr]',{'rape'},
-function(ARGS, SPEAKER)
-	local PLAYERS = GET_PLAYER(ARGS[1], SPEAKER)
-	for i,v in pairs(PLAYERS) do
-		BANG(_PLAYERS[v].Name)
-	end
-end)
-
 ADD_COMMAND('respawn','respawn [plr]',{},
 function(ARGS, SPEAKER)
 	local PLAYERS = GET_PLAYER(ARGS[1], SPEAKER)
@@ -2847,6 +2846,11 @@ function(ARGS, SPEAKER)
 end)
 
 -- / extra
+
+ADD_COMMAND('rejoin','rejoin',{'rj'},
+function(ARGS, SPEAKER)
+	game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId,game.JobId,_PLAYERS.LocalPlayer)
+end)
 
 ADD_COMMAND('gravity','gravity [int]',{},
 function(ARGS, SPEAKER)
