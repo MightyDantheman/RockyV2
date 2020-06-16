@@ -13,14 +13,12 @@ local BANS = {}
 function _G.ADD_ADMIN(ID) table.insert(ADMINS, ID) end
 function _G.ADD_BAN(ID) table.insert(BANS, ID) end
 
-local VERSION = '7/7/2019'
-local UPDATED = '7/7/2019'
+local VERSION = '6/15/2020'
+local UPDATED = '6/15/2020'
 local CHANGELOG = {
-	' Update: 7/7/2019',
+	' Update: 6/15/2020',
 	'',
-	'* Completely remade btools',
-	'! UI Overhaul',
-	'  (More coming soon)'
+	'* Fixed RbxUtility and RockyV2'
 }
 
 local CREDITS = [[
@@ -65,7 +63,7 @@ local LOOPED_K = {}
 local C_PREFIX = ';'
 local SPLIT = ' '
 
-local NEW = require(_CORE:WaitForChild('RbxUtility')).Create --LoadLibrary('RbxUtility').Create
+local NEW = require(_G.RbxUtility).Create --LoadLibrary('RbxUtility').Create
 
 local DeathTP = false
 local DeathPos
