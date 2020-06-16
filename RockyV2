@@ -63,7 +63,7 @@ local LOOPED_K = {}
 local C_PREFIX = ';'
 local SPLIT = ' '
 
-local NEW = require(_G.RbxUtility).Create --LoadLibrary('RbxUtility').Create
+local NEW = _G.RbxUtility.Create --LoadLibrary('RbxUtility').Create
 
 local DeathTP = false
 local DeathPos
