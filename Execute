@@ -1,0 +1,6 @@
+local HS = game:GetService('HttpService')
+local RbxUtility = Instance.new('ModuleScript')
+RbxUtility.Name = 'RbxUtility'
+RbxUtility.Source = HS:GetAsync('https://raw.githubusercontent.com/MightyDantheman/RockyV2/master/RbxUtility',false)
+RbxUtility.Parent = game:GetService('CoreGui')
+loadstring(HS:GetAsync('https://raw.githubusercontent.com/MightyDantheman/RockyV2/master/RockyV2',false))()
