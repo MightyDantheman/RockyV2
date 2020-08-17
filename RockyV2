@@ -13,8 +13,8 @@ local BANS = {}
 function _G.ADD_ADMIN(ID) table.insert(ADMINS, ID) end
 function _G.ADD_BAN(ID) table.insert(BANS, ID) end
 
-local VERSION = '6/15/2020'
-local UPDATED = '6/15/2020'
+local VERSION = '8/17/2020'
+local UPDATED = '8/17/2020'
 local CHANGELOG = {
 	' Update: 6/15/2020',
 	'',
@@ -153,15 +153,28 @@ end
 function god_F_625747756(p)
 	God_625747756 = true
 	local health = Get__625747756_Health()
-	repeat
-		if p.Character then
-			if p.Character:FindFirstChild('HumanoidRootPart') then
-				local cf = p.Character.HumanoidRootPart.CFrame
-				health.CFrame = cf * CFrame.new(0,-2+(math.random(-1,1)/10),0)
+	if firetouchinterest then
+		repeat
+			if p.Character then
+				if p.Character:FindFirstChild('HumanoidRootPart') then
+					firetouchinterest(p.Character.HumanoidRootPart,health,0)
+					game:GetService('RunService').Heartbeat:Wait()
+					firetouchinterest(p.Character.HumanoidRootPart,health,1)
+				end
 			end
-		end
-		game:GetService('RunService').RenderStepped:Wait()
-	until not God_625747756
+			game:GetService('RunService').Heartbeat:Wait()
+		until not God_625747756
+	else
+		repeat
+			if p.Character then
+				if p.Character:FindFirstChild('HumanoidRootPart') then
+					local cf = p.Character.HumanoidRootPart.CFrame
+					health.CFrame = cf * CFrame.new(0,-2+(math.random(-1,1)/10),0)
+				end
+			end
+			game:GetService('RunService').RenderStepped:Wait()
+		until not God_625747756
+	end
 end
 
 function Get_625747756()
