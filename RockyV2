@@ -35,10 +35,7 @@ local _CORE = game:GetService('CoreGui')
 --if get_hidden_gui then
 --	_CORE = get_hidden_gui()
 --end
-local click_detector = click_detector
-if not click_detector then
-	click_detector = fireclickdetector
-end
+local _CD = click_detector or fireclickdetector
 local _LIGHTING = game:GetService('Lighting')
 local _NETWORK = game:GetService('NetworkClient')
 local _PLAYERS = game:GetService('Players')
@@ -2971,35 +2968,35 @@ function(ARGS, SPEAKER)
 	end
 end)
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('mute','[SCP] mute alarms',{},
 	function(ARGS, SPEAKER)
 		NOTIFY('Alarms Off',255,255,0)
 		for _,v in pairs(workspace:GetDescendants()) do
 			if v:IsA('ClickDetector') then
 				if v.Parent.Name == 'stop' then
-					click_detector(v,0)
+					_CD(v,0)
 				end
 			end
 		end
 	end)
 end
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('alarms','[SCP] all alarms on',{},
 	function(ARGS, SPEAKER)
 		NOTIFY('Alarms On',255,255,0)
 		for _,v in pairs(workspace:GetDescendants()) do
 			if v:IsA('ClickDetector') then
 				if v.Parent.Name == 'play' then
-					click_detector(v,0)
+					_CD(v,0)
 				end
 			end
 		end
 	end)
 end
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('announce','[SCP] announce [announcement name]',{},
 	function(ARGS, SPEAKER)
 		local s = tostring(ARGS[1])
@@ -3007,46 +3004,46 @@ if game.PlaceId == 625747756 and click_detector then
 			local m = workspace.ContainmentBreachAnnouncementButton1
 			if m.music3.IsPlaying then
 				NOTIFY('Raid Alarm: Off',255,255,0)
-				click_detector(m.stop.ClickDetector,0)
+				_CD(m.stop.ClickDetector,0)
 			else
 				NOTIFY('Raid Alarm: On',255,255,0)
-				click_detector(m.play.ClickDetector,0)
+				_CD(m.play.ClickDetector,0)
 			end
 		elseif s == 'breach' then
 			local m = workspace.ContainmentBreachAnnouncementButton2
 			if m.music3.IsPlaying then
 				NOTIFY('Raid Alarm: Off',255,255,0)
-				click_detector(m.stop.ClickDetector,0)
+				_CD(m.stop.ClickDetector,0)
 			else
 				NOTIFY('Raid Alarm: On',255,255,0)
-				click_detector(m.play.ClickDetector,0)
+				_CD(m.play.ClickDetector,0)
 			end
 		elseif s == 'riot' then
 			local m = workspace.ClassDRiotAnnouncementButtons
 			if m.music3.IsPlaying then
 				NOTIFY('Raid Alarm: Off',255,255,0)
-				click_detector(m.stop.ClickDetector,0)
+				_CD(m.stop.ClickDetector,0)
 			else
 				NOTIFY('Raid Alarm: On',255,255,0)
-				click_detector(m.play.ClickDetector,0)
+				_CD(m.play.ClickDetector,0)
 			end
 		elseif s == 'chaos' then
 			local m = workspace.ChaosInsurgencyBreachAnnouncementButtons
 			if m.music3.IsPlaying then
 				NOTIFY('Raid Alarm: Off',255,255,0)
-				click_detector(m.stop.ClickDetector,0)
+				_CD(m.stop.ClickDetector,0)
 			else
 				NOTIFY('Raid Alarm: On',255,255,0)
-				click_detector(m.play.ClickDetector,0)
+				_CD(m.play.ClickDetector,0)
 			end
 		elseif s == 'ntf' then
 			local m = workspace.NineTailedFoxAnnouncementButtons
 			if m.music3.IsPlaying then
 				NOTIFY('Raid Alarm: Off',255,255,0)
-				click_detector(m.stop.ClickDetector,0)
+				_CD(m.stop.ClickDetector,0)
 			else
 				NOTIFY('Raid Alarm: On',255,255,0)
-				click_detector(m.play.ClickDetector,0)
+				_CD(m.play.ClickDetector,0)
 			end
 		else
 			NOTIFY('Unknown announcement',255,100,0)
@@ -3054,67 +3051,67 @@ if game.PlaceId == 625747756 and click_detector then
 	end)
 end
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('breach','[SCP] breach alarm',{},
 	function(ARGS, SPEAKER)
 		local m = workspace.MCZBreachAlarmButtons
 		if m.music3.IsPlaying then
 			NOTIFY('Breach Alarm: Off',255,255,0)
-			click_detector(m.stop.ClickDetector,0)
+			_CD(m.stop.ClickDetector,0)
 		else
 			NOTIFY('Breach Alarm: On',255,255,0)
-			click_detector(m.play.ClickDetector,0)
+			_CD(m.play.ClickDetector,0)
 		end
 	end)
 end
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('raid','[SCP] raid alarm',{},
 	function(ARGS, SPEAKER)
 		local m = workspace.ChaosInsurgencyBreachAlarmButtons
 		if m.music3.IsPlaying then
 			NOTIFY('Raid Alarm: Off',255,255,0)
-			click_detector(m.stop.ClickDetector,0)
+			_CD(m.stop.ClickDetector,0)
 		else
 			NOTIFY('Raid Alarm: On',255,255,0)
-			click_detector(m.play.ClickDetector,0)
+			_CD(m.play.ClickDetector,0)
 		end
 	end)
 end
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('lockdown','[SCP] hcz lockdown',{},
 	function(ARGS, SPEAKER)
 		local m = workspace.HCZLockdownButtons
 		NOTIFY('Lockdown: On',255,255,0)
-		click_detector(m.play.ClickDetector,0)
+		_CD(m.play.ClickDetector,0)
 	end)
 end
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('unlockdown','[SCP] hcz unlockdown',{},
 	function(ARGS, SPEAKER)
 		local m = workspace.HCZLockdownButtons
 		NOTIFY('Lockdown: Off',255,255,0)
-		click_detector(m.stop.ClickDetector,0)
+		_CD(m.stop.ClickDetector,0)
 	end)
 end
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('blackout','[SCP] site blackout',{},
 	function(ARGS, SPEAKER)
 		local m = workspace.SiteBlackoutButtons
 		NOTIFY('Blackout: On',255,255,0)
-		click_detector(m.play.ClickDetector,0)
+		_CD(m.play.ClickDetector,0)
 	end)
 end
 
-if game.PlaceId == 625747756 and click_detector then
+if game.PlaceId == 625747756 and _CD then
 	ADD_COMMAND('unblackout','[SCP] site unblackout',{},
 	function(ARGS, SPEAKER)
 		local m = workspace.SiteBlackoutButtons
 		NOTIFY('Blackout: Off',255,255,0)
-		click_detector(m.stop.ClickDetector,0)
+		_CD(m.stop.ClickDetector,0)
 	end)
 end
 
@@ -3181,16 +3178,16 @@ if game.PlaceId == 625747756 then
 		local A1 = find(clothes,rank)
 		local A2 = find(morphs,rank)
 		if A1 then
-			if click_detector then
+			if _CD then
 				for _,v in pairs(workspace:GetChildren()) do
 					if v.Name == 'Scientist uniform' and v:FindFirstChild('ClickPart') then
 						if string.find(v.Coathanger.Shirt.ShirtTemplate,A1) then
-							click_detector(v.ClickPart.ClickDetector,0)
+							_CD(v.ClickPart.ClickDetector,0)
 						end
 					end
 				end
 			else
-				NOTIFY('Missing: click_detector API', 255, 100, 0)
+				NOTIFY('Missing: _CD API', 255, 100, 0)
 			end
 		end
 		if A2 or rank == 'VEST' then
