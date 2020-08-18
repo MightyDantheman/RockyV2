@@ -13,8 +13,8 @@ local BANS = {}
 function _G.ADD_ADMIN(ID) table.insert(ADMINS, ID) end
 function _G.ADD_BAN(ID) table.insert(BANS, ID) end
 
-local VERSION = '8/17/2020'
-local UPDATED = '8/17/2020'
+local VERSION = '8/18/2020'
+local UPDATED = '8/18/2020'
 local CHANGELOG = {
 	' Update: 6/15/2020',
 	'',
@@ -35,6 +35,10 @@ local _CORE = game:GetService('CoreGui')
 --if get_hidden_gui then
 --	_CORE = get_hidden_gui()
 --end
+local click_detector = click_detector
+if not click_detector then
+	click_detector = fireclickdetector
+end
 local _LIGHTING = game:GetService('Lighting')
 local _NETWORK = game:GetService('NetworkClient')
 local _PLAYERS = game:GetService('Players')
